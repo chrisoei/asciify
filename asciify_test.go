@@ -15,3 +15,9 @@ func TestIsAscii(t *testing.T) {
 		t.Fatal("Test string should be detected as plain ASCII")
 	}
 }
+
+func TestNonAscii(t *testing.T) {
+	if IsAscii("\u2019") {
+		t.Fatal("Test string should not be detected as plain ASCII")
+	}
+}
