@@ -9,5 +9,5 @@ func Convert(s string) string {
 }
 
 func IsAscii(s string) bool {
-    return regexp.MustCompile("\\A[A-Za-z0-9 ]*\\z").MatchString(s)
+    return regexp.MustCompile("\\A[ -~]*\\z").MatchString(s)
 }
