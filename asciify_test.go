@@ -21,3 +21,9 @@ func TestNonAscii(t *testing.T) {
 		t.Fatal("Test string should not be detected as plain ASCII")
 	}
 }
+
+func TestConvertLeftQuote(t *testing.T) {
+	if Convert("John\u2019s guitar") != "John's guitar" {
+		t.Fatal("Incorrect conversion of apostrophe")
+	}
+}
