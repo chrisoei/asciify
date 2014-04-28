@@ -17,9 +17,9 @@ var replacer = strings.NewReplacer(
 	"\u201D", "\"")
 
 func Convert(s string) string {
-	return nonAscii.ReplaceAllLiteralString(
-		replacer.Replace(norm.NFD.String(s)),
-		"")
+	normed := norm.NFD.String(s)
+	replaced := replacer.Replace(normed)
+	return nonAscii.ReplaceAllLiteralString(replaced, "")
 }
 
 func IsAscii(s string) bool {
