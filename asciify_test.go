@@ -27,3 +27,9 @@ func TestConvertLeftQuote(t *testing.T) {
 		t.Fatal("Incorrect conversion of apostrophe")
 	}
 }
+
+func TestConvertTildeAccent(t *testing.T) {
+	if Convert("ma\u00f1ana") != "manana" {
+		t.Fatal("Incorrect conversion of tilde accent")
+	}
+}

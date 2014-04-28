@@ -1,16 +1,22 @@
 package asciify
 
 import (
+	"code.google.com/p/go.text/unicode/norm"
 	"regexp"
 	"strings"
 )
 
+var isAscii = regexp.MustCompile("\\A[ -~]*\\z")
+var nonAscii = regexp.MustCompile("[^ -~]+")
+
 func Convert(s string) string {
-	return Replacer().Replace(s)
+	return nonAscii.ReplaceAllLiteralString(
+		Replacer().Replace(norm.NFD.String(s)),
+		"")
 }
 
 func IsAscii(s string) bool {
-	return regexp.MustCompile("\\A[ -~]*\\z").MatchString(s)
+	return isAscii.MatchString(s)
 }
 
 func Replacer() *strings.Replacer {
